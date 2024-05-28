@@ -1,0 +1,101 @@
+-- Script SQL 
+
+USE Escola;
+
+-- Criação da tabela de professores
+CREATE TABLE Professores (
+    professor_id INT AUTO_INCREMENT PRIMARY KEY,
+    professor_nome VARCHAR(50) NOT NULL,
+    professor_sobrenome VARCHAR(50) NOT NULL,
+    professor_email VARCHAR(100) UNIQUE NOT NULL
+);
+
+-- Criação da tabela de cursos
+CREATE TABLE Cursos (
+    curso_id INT AUTO_INCREMENT PRIMARY KEY,
+    curso_name VARCHAR(100) NOT NULL,
+    professor_id INT,
+    FOREIGN KEY (professor_id) REFERENCES Professores(professor_id)
+);
+
+-- Criação da tabela de alunos
+CREATE TABLE Alunos (
+    aluno_id INT AUTO_INCREMENT PRIMARY KEY,
+    aluno_nome VARCHAR(50) NOT NULL,
+    aluno_sobrenome VARCHAR(50) NOT NULL,
+    aluno_email VARCHAR(100) UNIQUE NOT NULL,
+    aluno_anivesario DATE
+);
+
+-- Criação da tabela de matrículas
+CREATE TABLE Matricula (
+    matricula_id INT AUTO_INCREMENT PRIMARY KEY,
+    aluno_id INT,
+    curso_id INT,
+    matricula_data DATE,
+    FOREIGN KEY (aluno_id) REFERENCES Alunos(aluno_id),
+    FOREIGN KEY (curso_id) REFERENCES Cursos(curso_id)
+);
+
+-- Inserir dados na tabela Professores
+INSERT INTO Professores (professor_nome, professor_sobrenome, professor_email) VALUES
+('Ana', 'Silva', 'ana.silva@escola.com'),
+('Bruno', 'Oliveira', 'bruno.oliveira@escola.com'),
+('Carlos', 'Souza', 'carlos.souza@escola.com'),
+('Daniela', 'Ferreira', 'daniela.ferreira@escola.com'),
+('Eduardo', 'Pereira', 'eduardo.pereira@escola.com'),
+('Fernanda', 'Almeida', 'fernanda.almeida@escola.com'),
+('Gustavo', 'Santos', 'gustavo.santos@escola.com'),
+('Helena', 'Lima', 'helena.lima@escola.com'),
+('Igor', 'Ribeiro', 'igor.ribeiro@escola.com'),
+('Julia', 'Costa', 'julia.costa@escola.com');
+
+-- Inserir dados na tabela Cursos
+INSERT INTO Cursos (curso_name, professor_id) VALUES
+('Matemática', 1),
+('Português', 2),
+('História', 3),
+('Geografia', 4),
+('Física', 5),
+('Química', 6),
+('Biologia', 7),
+('Inglês', 8),
+('Educação Física', 9),
+('Artes', 10);
+
+-- Inserir dados na tabela Alunos
+INSERT INTO Alunos (aluno_nome, aluno_sobrenome, aluno_email, aluno_anivesario) VALUES
+('Lucas', 'Martins', 'lucas.martins@escola.com', '2006-04-15'),
+('Mariana', 'Dias', 'mariana.dias@escola.com', '2005-03-22'),
+('Pedro', 'Rocha', 'pedro.rocha@escola.com', '2007-08-11'),
+('Sofia', 'Moraes', 'sofia.moraes@escola.com', '2006-01-29'),
+('Guilherme', 'Barbosa', 'guilherme.barbosa@escola.com', '2005-12-02'),
+('Beatriz', 'Cunha', 'beatriz.cunha@escola.com', '2007-06-18'),
+('Rafael', 'Castro', 'rafael.castro@escola.com', '2006-11-05'),
+('Larissa', 'Mendes', 'larissa.mendes@escola.com', '2005-09-10'),
+('Henrique', 'Cardoso', 'henrique.cardoso@escola.com', '2007-07-24'),
+('Camila', 'Vieira', 'camila.vieira@escola.com', '2006-05-30');
+
+-- Inserir dados na tabela Matricula
+INSERT INTO Matricula (aluno_id, curso_id, matricula_data) VALUES
+(1, 1, '2024-02-01'),
+(1, 2, '2024-02-01'),
+(2, 3, '2024-02-01'),
+(2, 4, '2024-02-01'),
+(3, 5, '2024-02-01'),
+(3, 6, '2024-02-01'),
+(4, 7, '2024-02-01'),
+(4, 8, '2024-02-01'),
+(5, 9, '2024-02-01'),
+(5, 10, '2024-02-01'),
+(6, 1, '2024-02-01'),
+(6, 2, '2024-02-01'),
+(7, 3, '2024-02-01'),
+(7, 4, '2024-02-01'),
+(8, 5, '2024-02-01'),
+(8, 6, '2024-02-01'),
+(9, 7, '2024-02-01'),
+(9, 8, '2024-02-01'),
+(10, 9, '2024-02-01'),
+(10, 10, '2024-02-01');
+
