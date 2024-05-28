@@ -1,6 +1,6 @@
 package com.projeto.escola.Entity;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 
 import jakarta.persistence.*;
@@ -14,7 +14,7 @@ public class Matricula {
     private int id;
 
     @Column(columnDefinition = "DATE", name = "matricula_data")
-    private LocalDateTime matriculaData;
+    private LocalDate matriculaData;
 
     @ManyToOne
     @JoinColumn(name = "aluno_id", nullable = false)
@@ -32,11 +32,11 @@ public class Matricula {
         this.id = id;
     }
 
-    public LocalDateTime getMatriculaData() {
+    public LocalDate getMatriculaData() {
         return matriculaData;
     }
 
-    public void setMatriculaData(LocalDateTime matriculaData) {
+    public void setMatriculaData(LocalDate matriculaData) {
         this.matriculaData = matriculaData;
     }
 

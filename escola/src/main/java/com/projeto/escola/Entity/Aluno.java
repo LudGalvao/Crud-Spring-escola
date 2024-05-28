@@ -1,7 +1,10 @@
 package com.projeto.escola.Entity;
 
-import java.time.LocalDateTime;
+
+import java.time.LocalDate;
 import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.*;
 
@@ -23,9 +26,10 @@ public class Aluno {
     private String email;
 
     @Column(columnDefinition = "DATE", name = "aluno_anivesario")
-    private LocalDateTime aniversario;
+    private LocalDate aniversario;
 
     @OneToMany(mappedBy = "aluno")
+    @JsonIgnore
     private List<Matricula> matriculas;
 
     public int getId() {
@@ -60,11 +64,11 @@ public class Aluno {
         this.email = email;
     }
 
-    public LocalDateTime getAniversario() {
+    public LocalDate getAniversario() {
         return aniversario;
     }
 
-    public void setAniversario(LocalDateTime aniversario) {
+    public void setAniversario(LocalDate aniversario) {
         this.aniversario = aniversario;
     }
 
